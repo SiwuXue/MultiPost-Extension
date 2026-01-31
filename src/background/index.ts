@@ -9,6 +9,7 @@ import {
 } from "~sync/common";
 import QuantumEntanglementKeepAlive from "../utils/keep-alive";
 import { linkExtensionMessageHandler, starter } from "./services/api";
+import { mcpMessageHandler } from "./services/mcp";
 import {
   addTabsManagerMessages,
   tabsManagerHandleTabRemoved,
@@ -47,6 +48,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   tabsManagerMessageHandler(request, sender, sendResponse);
   trustDomainMessageHandler(request, sender, sendResponse);
   linkExtensionMessageHandler(request, sender, sendResponse);
+  mcpMessageHandler(request, sender, sendResponse);
   return true;
 });
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
